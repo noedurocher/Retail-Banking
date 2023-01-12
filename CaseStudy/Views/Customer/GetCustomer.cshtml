@@ -1,0 +1,102 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "GetCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+
+    table, tr, td {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<h1 style="text-align:center">View Customer By ID or SSN ID</h1>
+<form asp-action="DisplayCustomer">
+    @*<input type="number" asp-for="Account.CustomerID" value=0 formnovalidate="formnovalidate" hidden />*@
+    <table>
+        <tr>
+            <td>
+                <label asp-for="SSNID"></label>
+            </td>
+            <td>
+                <input style="width:88%" type="number" asp-for="SSNID" value=0 formnovalidate="formnovalidate" min="0" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="CustomerID"></label>
+            </td>
+            <td>
+                <input style="width:88%" type="number" asp-for="CustomerID" value=0 formnovalidate="formnovalidate" min="0" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div style="text-align:center">
+        <button type="submit">VIEW</button>
+    </div>
+    <br />
+   
+    <div style="text-align:center">
+        <p>@Html.ActionLink("View All Customers", "ViewAllCustomers")</p>
+    </div>
+    <br />
+    <div style="text-align:center">
+        @Html.ActionLink("CANCEL", "ViewAllCustomers")
+    </div>
+
+</form>
+
+@if (TempData["result"] != null)
+{
+    if (TempData["result"].ToString() == "Enter Customer ID or SSN ID only not both")
+    {
+        <p style="text-align:center;border:3px solid red;">@TempData["result"].ToString()</p>
+    }
+    if (TempData["result"].ToString() == "Invalid Customer ID")
+    {
+        <p style="text-align:center;border:3px solid red;">@TempData["result"].ToString()</p>
+    }
+    if (TempData["result"].ToString() == "Invalid SSN ID")
+    {
+        <p style="text-align:center;border:3px solid red;">@TempData["result"].ToString()</p>
+    }
+
+}
+
+
+@*<form asp-action="DisplayCustomer">
+        <table>
+            <tr>
+                <td>
+                    <label asp-for="CustomerID"></label>
+                </td>
+                <td>
+                    <input type="number" asp-for="CustomerID" required />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <div >
+            <button type="submit">View Customer</button>
+        </div>
+        <br />
+
+    </form>
+*@
+
+
+

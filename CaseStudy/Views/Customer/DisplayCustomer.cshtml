@@ -1,0 +1,53 @@
+﻿
+@model Customer
+@{
+    ViewData["Title"] = "DisplayCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    h1, p {
+        text-align: center;
+    }
+
+    table, th, td, tr {
+        border: 1px solid black;
+    }
+</style>
+
+
+<h1>Customer Details</h1>
+
+<table class="table table-active table-striped">
+    <tr>
+        <th>Customer ID</th>
+        <th>SSN</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address Line 1</th>
+        <th>Address Line 2</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Status</th>
+
+    </tr>
+    <tr>
+        <td>@Model.CustomerID</td>
+        <td>@Model.SSNID</td>
+        <td>@Model.Name</td>
+        <td>@Model.Age</td>
+        <td>@Model.AddressLine1</td>
+        <td>@Model.AddressLine2</td>
+        <td>@Model.City</td>
+        <td>@Model.State</td>
+        <td>@Model.Status</td>
+
+    </tr>
+</table>
+
+<p>@Html.ActionLink("Back to Index", "Index")</p>
+<p>@Html.ActionLink("Back", "GetCustomer")</p>

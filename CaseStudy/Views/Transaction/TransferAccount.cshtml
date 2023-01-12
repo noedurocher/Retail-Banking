@@ -1,0 +1,68 @@
+﻿@using CaseStudy.ViewModel;
+@model TransferViewModel
+@{
+    ViewData["Title"] = "TransferAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Transfer Account</h1>
+<form asp-action="TransferScreen">
+    @Html.HiddenFor(a=>a.SourceAccountID)
+    <style>
+        div {
+            background: white;
+            background: linear-gradient(to right,#f6ebe6,#aee1f9);
+        }
+        table, tr, td {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <table>
+        <tr>
+            <td>
+                Source account ID
+
+            <td>
+                @*@Html.DisplayTextFor(a => a.SourceAccountID)*@
+                <input type="number" asp-for="SourceAccountID" value="@Model.SourceAccountID" readonly />
+                <span asp-validation-for="SourceAccountID"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enter amount to transfer
+
+            <td>
+                <input type="number" asp-for="Amount" required min="1" />
+                <span asp-validation-for="Amount"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enter target account ID
+
+            <td>
+                <input type="number" asp-for="TargetAccountID" required />
+                <span asp-validation-for="TargetAccountID"></span>
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:center">
+        <input type="submit" value="Transfer Funds" />
+    </div>
+    <div style="text-align:center">
+       <p style="color:red">@TempData["ErrorMessage"]</p>
+    </div>
+    <div style="text-align:center">
+    @Html.ActionLink("CANCEL", "ViewAccountBySSNID", "CashierTeller")
+        </div>
+</form>

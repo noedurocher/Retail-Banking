@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Customer>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+</style>
+
+<h1>Customers</h1>
+<table class="table table-active table-striped">
+
+    @foreach (Customer c in Model)
+    {
+        <tr>
+            <td>@c.CustomerID</td>
+            <td>@c.SSNID</td>
+            <td>@c.Name</td>
+            <td>@c.Age</td>
+            <td>@c.AddressLine1</td>
+            <td>@c.AddressLine2</td>
+            <td>@c.City</td>
+            <td>@c.State</td>
+            <td>@c.Status</td>
+            <td>@Html.ActionLink("Update","UpdateCustomer", new { id = c.CustomerID })</td>
+            <td>@Html.ActionLink("Delete", "DeleteCustomer", new { id = c.CustomerID })</td>
+        </tr>
+
+    }
+</table>

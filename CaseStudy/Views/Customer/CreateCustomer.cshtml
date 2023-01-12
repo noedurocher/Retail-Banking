@@ -1,0 +1,322 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "CreateCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Add Customer</h1>
+@if (ViewData["result"] != null)
+{
+    if (ViewData["result"].ToString() == "Valid")
+    {
+        <p style="color:green; text-align:center">Customer creation iniated successfully</p>
+    }
+    else
+    {
+        <p style="color:red; text-align:center">Could not add customer</p>
+    }
+
+}
+<form asp-action="CreateCustomer">
+    <style>
+        div {
+            background: white;
+            background: linear-gradient(to right,#f6ebe6,#aee1f9);
+        }
+        table, tr, td {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <input type="hidden" asp-for="Status" />
+    <table>
+       
+        <tr>
+            <td>
+                SSN ID
+            </td>
+            <td>
+                <input type="text" asp-for="@Model.SSNID" required minlength="9" />
+                <span asp-validation-for="SSNID"></span>
+                <div style="color:red">@ViewBag.ErrorMessage</div>
+            </td>
+            @*<td><span asp-validation-for="SSNID"></span></td>
+            <td><div style="color:red">@ViewBag.ErrorMessage</div></td>*@
+        </tr>
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                <input type="text" asp-for="@Model.Name" />
+                <span asp-validation-for="Name"></span>
+            </td>
+            @*<td><span asp-validation-for="Name"></span></td>*@
+        </tr>
+        <tr>
+            <td>
+                Age
+            </td>
+            <td>
+                <input type="text" asp-for="@Model.Age" />
+                <span asp-validation-for="Age"></span>
+            </td>
+            @*<td><span asp-validation-for="Age"></span></td>*@
+        </tr>
+        <tr>
+            <td>
+                Address Line 1
+            </td>
+            <td>
+                <input type="text" asp-for="@Model.AddressLine1" />
+                <span asp-validation-for="AddressLine1"></span>
+            </td>
+            @*<td><span asp-validation-for="AddressLine1"></span></td>*@
+        </tr>
+        <tr>
+            <td>
+                Address Line 2
+            </td>
+            <td>
+                <input type="text" asp-for="@Model.AddressLine2" />
+                <span asp-validation-for="AddressLine2"></span>
+            </td>
+            @*<td><span asp-validation-for="AddressLine2"></span></td>*@
+        </tr>
+        <tr>
+            <td>
+                City
+            </td>
+            <td>
+                <input type="text" asp-for="@Model.City" />
+                <span asp-validation-for="City"></span>
+            </td>
+            @*<td><span asp-validation-for="City"></span></td>*@
+        </tr>
+        <tr>
+            <td>State</td>
+            <td>
+                <select style="width:100%" asp-for="State">
+                    <option></option>
+                    <option>Alabama</option>
+                    <option>Alaska</option>
+                    <option>Arizona</option>
+                    <option>Arkansas</option>
+                    <option>California</option>
+                    <option>Colorado</option>
+                    <option>Connecticut</option>
+                    <option>Delaware</option>
+                    <option>District of Columbia</option>
+                    <option>Florida</option>
+                    <option>Georgia</option>
+                    <option>Hawaii</option>
+                    <option>Idaho</option>
+                    <option>Illinois</option>
+                    <option>Indiana</option>
+                    <option>Iowa</option>
+                    <option>Kansas</option>
+                    <option>Kentucky</option>
+                    <option>Louisiana</option>
+                    <option>Maine</option>
+                    <option>Maryland</option>
+                    <option>Massachusetts</option>
+                    <option>Michigan</option>
+                    <option>Minnesota</option>
+                    <option>Mississippi</option>
+                    <option>Missouri</option>
+                    <option>Montana</option>
+                    <option>Nebraska</option>
+                    <option>Nevada</option>
+                    <option>New Hampshire</option>
+                    <option>New Jersey</option>
+                    <option>New Mexico</option>
+                    <option>New York</option>
+                    <option>North Carolina</option>
+                    <option>North Dakota</option>
+                    <option>Ohio</option>
+                    <option>Oklahoma</option>
+                    <option>Oregon</option>
+                    <option>Pennsylvania</option>
+                    <option>Rhode Island</option>
+                    <option>South Carolina</option>
+                    <option>South Dakota</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Utah</option>
+                    <option>Vermont</option>
+                    <option>Virginia</option>
+                    <option>Washington</option>
+                    <option>West Virginia</option>
+                    <option>Wisconsin</option>
+                    <option>Wyoming</option>
+                </select>
+                <span asp-validation-for="State"></span>
+            </td>
+            @*<td><span asp-validation-for="State"></span></td>*@
+        </tr>
+
+    </table>
+    <div style="text-align:center">
+        <input type="submit" value="Add Customer" />
+    </div>
+    <div style="text-align:center">
+        @Html.ActionLink("Back to View Customers", "ViewAllCustomers")
+    </div>
+
+</form>
+
+
+@*<style>
+        .createclass {
+            border: 1px solid black;
+            width: 65%;
+            margin: 0 17.5%;
+        }
+
+        #viewall {
+            text-align: center;
+        }
+
+        table, tr, td {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        input, select {
+            width: 245px;
+        }
+    </style>
+
+    <h1 style="text-align:center">Add Customer</h1>
+
+    @if (ViewData["result"] != null)
+    {
+        if (ViewData["result"].ToString() == "Valid")
+        {
+            <p style="color:green; text-align:center">Customer creation iniated successfully</p>
+        }
+        else
+        {
+            <p style="color:red; text-align:center">Could not add customer</p>
+        }
+
+    }
+    <form class="createclass" asp-action="CreateCustomer">
+        <input type="hidden" asp-for="Status" />
+        <table>
+            <tr>
+                <td><label>Social Security Number</label></td>
+                <td><input type="number" asp-for="SSNID" required minlength="9" /></td>
+                <td><span asp-validation-for="SSNID"></span></td>
+                <td><div style="color:red">@ViewBag.ErrorMessage</div></td>
+            </tr>
+            <tr>
+                <td><label>Name</label></td>
+                <td><input type="text" asp-for="Name" /></td>
+                <td><span asp-validation-for="Name"></span></td>
+            </tr>
+            <tr>
+                <td><label>Age</label></td>
+                <td><input type="number" asp-for="Age" /></td>
+                <td><span asp-validation-for="Age"></span></td>
+            </tr>
+            <tr>
+                <td><label>Address Line 1</label></td>
+                <td><input type="text" asp-for="AddressLine1" /></td>
+                <td><span asp-validation-for="AddressLine1"></span></td>
+            </tr>
+            <tr>
+                <td><label>Address Line 2</label></td>
+                <td><input type="text" asp-for="AddressLine2" value="N/A" /></td>
+            </tr>
+            <tr>
+                <td><label>City</label></td>
+                <td><input type="text" asp-for="City" /></td>
+                <td><span asp-validation-for="City"></span></td>
+            </tr>
+            <tr>
+                <td><label>State</label></td>
+                <td>
+                    <select asp-for="State">
+                        <option></option>
+                        <option>Alabama</option>
+                        <option>Alaska</option>
+                        <option>Arizona</option>
+                        <option>Arkansas</option>
+                        <option>California</option>
+                        <option>Colorado</option>
+                        <option>Connecticut</option>
+                        <option>Delaware</option>
+                        <option>District of Columbia</option>
+                        <option>Florida</option>
+                        <option>Georgia</option>
+                        <option>Hawaii</option>
+                        <option>Idaho</option>
+                        <option>Illinois</option>
+                        <option>Indiana</option>
+                        <option>Iowa</option>
+                        <option>Kansas</option>
+                        <option>Kentucky</option>
+                        <option>Louisiana</option>
+                        <option>Maine</option>
+                        <option>Maryland</option>
+                        <option>Massachusetts</option>
+                        <option>Michigan</option>
+                        <option>Minnesota</option>
+                        <option>Mississippi</option>
+                        <option>Missouri</option>
+                        <option>Montana</option>
+                        <option>Nebraska</option>
+                        <option>Nevada</option>
+                        <option>New Hampshire</option>
+                        <option>New Jersey</option>
+                        <option>New Mexico</option>
+                        <option>New York</option>
+                        <option>North Carolina</option>
+                        <option>North Dakota</option>
+                        <option>Ohio</option>
+                        <option>Oklahoma</option>
+                        <option>Oregon</option>
+                        <option>Pennsylvania</option>
+                        <option>Rhode Island</option>
+                        <option>South Carolina</option>
+                        <option>South Dakota</option>
+                        <option>Tennessee</option>
+                        <option>Texas</option>
+                        <option>Utah</option>
+                        <option>Vermont</option>
+                        <option>Virginia</option>
+                        <option>Washington</option>
+                        <option>West Virginia</option>
+                        <option>Wisconsin</option>
+                        <option>Wyoming</option>
+                    </select>
+                </td>
+                <td><span asp-validation-for="State"></span></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" value="Create Customer" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <p id="viewall">@Html.ActionLink("View All Customers", "ViewAllCustomers")<p>
+*@

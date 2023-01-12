@@ -1,0 +1,78 @@
+﻿@model Account
+@{
+    ViewData["Title"] = "DeleteFrom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+
+    form {
+        width: 65%;
+        margin: 0 17.5%;
+    }
+
+    h1, p, div {
+        text-align: center;
+    }
+
+    table, tr, td {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+</style>
+
+<h1>Delete Account</h1>
+
+<br />
+<form asp-action="DeleteFroms">
+    <input type="text" value=@Model.Status asp-for="@Model.Status" hidden />
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(a => a.CustomerID)
+            </td>
+            <td>
+                <input type="text" value=@Model.CustomerID asp-for="@Model.CustomerID" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(a => a.AccountID)
+            </td>
+            <td>
+                <input type="text" value=@Model.AccountID asp-for="@Model.AccountID" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(a => a.AccountType)
+            </td>
+            <td>
+                <input type="text" value=@Model.AccountType asp-for="@Model.AccountType" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(a => a.AccountBalance)
+            </td>
+            <td>
+                <input type="text" value=@Model.AccountBalance asp-for="@Model.AccountBalance" readonly />
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:center">
+        <button type="submit">CONFIRM DELETE</button>
+    </div>
+    <br />
+    <div style="text-align:center">
+        @Html.ActionLink("CANCEL", "Delete")
+    </div>
+
+</form>
+

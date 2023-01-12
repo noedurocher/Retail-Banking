@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Account>
+@{
+    ViewData["Title"] = "ViewAccounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">View Accounts</h1>
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+@*<form asp-action="ViewAccount">
+        <table>
+            <tr>
+                <td>
+                    <label asp-for="Account.AccountID"></label>
+                </td>
+                <td>
+                    <select style="width:100%" asp-for="Account.AccountID" asp-items="@(new SelectList(Model.ViewAccounts,"AccountID","AccountID"))" required></select>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <div style="text-align:center">
+            <button type="submit">VIEW</button>
+        </div>
+        <div style="text-align:center">
+            @Html.ActionLink("Back", "ViewAccountBySSNID")
+        </div>
+    </form>*@
+
+<style>
+    table, tr, td, th {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+</style>
+
+<table class="table table-active table-striped">
+    <tr>
+        <th>Customer ID</th>
+        <th>Account ID</th>
+        <th>Account Type</th>
+        <th>Account Balance</th>
+        <th>Deposit</th>
+        <th>Withdraw</th>
+        <th>Transfer</th>
+    </tr>
+    @foreach (Account account in Model)
+    {
+        <tr>
+            <td>@account.CustomerID</td>
+            <td>@account.AccountID</td>
+            <td>@account.AccountType</td>
+            <td>$@account.AccountBalance</td>
+            @*<td>@Html.ActionLink("Deposit", "Deposit", new { AccountID = account.AccountID })</td>*@
+            <td><a onclick="showInPopup('@Url.Action("Deposit","CashierTeller",new { AccountID = account.AccountID },Context.Request.Scheme)', 'Deposit')" class="btn btn-success text-white"><i class="fas fa-random"></i>Deposit</a></td>
+            <td>@Html.ActionLink("Withdraw", "Withdraw", new { AccountID = account.AccountID })</td>
+            <td>@Html.ActionLink("Transfer", "TransferAccount", "Transaction", new { SourceAccountID = account.AccountID })</td>
+        </tr>
+    }
+</table>
+<div style="text-align:center">
+    @Html.ActionLink("Back", "ViewAccountBySSNID")
+</div>

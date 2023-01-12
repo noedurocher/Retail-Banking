@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Account>
+@{
+    ViewData["Title"] = "DeleteAccounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Delete an Account</h1>
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td, th {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Customer ID</th>
+        <th>Account ID</th>
+        <th>Account Type</th>
+        <th>Account Balance</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (Account account in Model)
+    {
+        <tr>
+            <td>@account.CustomerID</td>
+            <td>@account.AccountID</td>
+            <td>@account.AccountType</td>
+            <td>$@account.AccountBalance</td>
+            <td>@Html.ActionLink("Confirm Delete", "ConfirmDelete", new { AccountID = account.AccountID })</td>
+        </tr>
+    }
+</table>
+<div style="text-align:center">
+    @Html.ActionLink("CANCEL", "Delete")
+</div>

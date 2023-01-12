@@ -1,0 +1,61 @@
+﻿@*@using CaseStudy.ViewModel
+@model TransactionViewModel*@
+@model IPagedList<CaseStudy.Models.Transaction>
+ 
+ 
+@{
+    ViewData["Title"] = "GetStatements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Statements</h1>
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td, th {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+</style>
+
+<table class="table table-active table-striped">
+    <tr>
+        <th>Transaction Date</th>
+        <th>Transaction Type</th>
+        <th>Transaction Amount</th>
+    </tr>
+    @*@foreach (Transaction transaction in Model.ViewTransaction)*@
+    @foreach(var item in Model)
+    {
+    <tr>
+        @*<td>@transaction.TransactionDate</td>
+            <td>@transaction.TransactionType</td>
+            <td>@transaction.TransactionAmount</td>*@
+        <td>@Html.DisplayFor(modelItem => item.TransactionDate)</td>
+        <td>@Html.DisplayFor(modelItem => item.TransactionType)</td>
+        <td>$@Html.DisplayFor(modelItem => item.TransactionAmount)</td>
+    </tr>
+    }
+</table>
+<br />
+<div style="text-align:center">
+    Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
+</div>
+<br />
+<div>
+    <table>
+        <tr>
+            <td>@Html.PagedListPager(Model, page => Url.Action("GetStatements", new { page }))</td>
+        </tr>
+    </table>
+</div>
+<br />
+<div style="text-align:center">
+    @Html.ActionLink("CANCEL", "GetStatement")
+</div>
+

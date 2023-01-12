@@ -1,0 +1,121 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "DeleteCustomer";
+   @* Layout = "~/Views/Shared/_Layout.cshtml";*@
+    Layout = null;
+}
+
+<h1 style="text-align:center">Delete Customer</h1>
+<form asp-action="DeleteCustomer">
+    @Html.HiddenFor(a => a.Status)
+    @Html.HiddenFor(a => a.CustomerID)
+    @Html.HiddenFor(a => a.SSNID)
+    @Html.HiddenFor(a => a.Name)
+    @Html.HiddenFor(a => a.Age)
+    @Html.HiddenFor(a => a.AddressLine1)
+    @Html.HiddenFor(a => a.AddressLine2)
+    @Html.HiddenFor(a => a.City)
+    @Html.HiddenFor(a => a.State)
+    <style>
+        div {
+            background: white;
+            background: linear-gradient(to right,#f6ebe6,#aee1f9);
+        }
+
+        table, tr, td {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <table>
+        <tr>
+            <td>
+                Customer ID
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.CustomerID)
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                SSN ID
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.SSNID)
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.Name)
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Age
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.Age)
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Address Line 1
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.AddressLine1)
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Address Line 2
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.AddressLine2)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                City
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.City)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                State
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.State)
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:center">
+        <input type="submit" value="Confirm Delete" />
+    </div>
+    <div style="text-align:center">
+        @Html.ActionLink("Back to View Customers", "ViewAllCustomers")
+    </div>
+    <div style="color:green">
+        <p style="text-align:center"> @ViewBag.Message</p>
+    </div>
+    <div style="color:red">
+        <p style="text-align:center"> @ViewBag.ErrorMessage</p>
+    </div>
+</form>

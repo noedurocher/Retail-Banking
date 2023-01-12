@@ -1,0 +1,67 @@
+﻿@using CaseStudy.ViewModel
+@model TransactionViewModel
+@{
+    ViewData["Title"] = "GetStatement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Get Statements</h1>
+
+@if (TempData["UserMessage"] != null)
+{
+    <p style="text-align:center;border:3px solid red;">@TempData["UserMessage"].ToString()</p>
+}
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+
+<form asp-action="Get">
+    <table>
+        <tr>
+            <td>
+                <label asp-for="@Model.Transaction.AccountID"></label>
+            </td>
+            <td>
+                <input style="width:88%" type="number" asp-for="@Model.Transaction.AccountID" required value=0 formnovalidate="formnovalidate" min="0" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Number of Transactions</label>
+            </td>
+            <td>
+                <input style="width:88%" type="number" asp-for="@Model.count" required value=0 formnovalidate="formnovalidate" min="1" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div style="text-align:center">
+        <button type="submit">VIEW</button>
+    </div>
+    <br />
+    <div style="text-align:center">
+        @Html.ActionLink("View Transaction By Dates", "GetStatementByDates")
+    </div>
+    <br />
+    <div style="text-align:center">
+        @Html.ActionLink("CANCEL", "ViewAccountBySSNID")
+    </div>
+
+</form>

@@ -1,0 +1,23 @@
+﻿
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["UserMessage"] != null)
+{
+    @if (TempData["UserMessage"].ToString() == "No accounts found.")
+    {
+        <p style="text-align:center;border:3px solid red;">@TempData["UserMessage"].ToString()</p>
+    }
+}
+<br />
+<p style="text-align:center">@Html.ActionLink("Back", "ViewAccountBySSNID")</p>
+

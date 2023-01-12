@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Customer>
+@{
+    ViewData["Title"] = "ViewAllCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    h1{
+        text-align:center;
+    }
+
+    table, th, td, tr{
+        border: 1px solid black;
+       
+    }
+</style>
+
+
+<h1>All Customers</h1>
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+</style>
+<table class="table table-active table-striped">
+    <tr>
+        <th>Customer ID</th>
+        <th>SSN </th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address 1</th>
+        <th>Address 2</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Status</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (Customer c in Model)
+    {
+<tr>
+    <td>@c.CustomerID</td>
+    <td>@c.SSNID</td>
+    <td>@c.Name</td>
+    <td>@c.Age</td>
+    <td>@c.AddressLine1</td>
+    <td>@c.AddressLine2</td>
+    <td>@c.City</td>
+    <td>@c.State</td>
+    <td>@c.Status</td>
+    @*<td>@Html.ActionLink("Update", "UpdateCustomer", new { id = c.CustomerID })</td>*@
+    <td><a onclick="showInPopup('@Url.Action("UpdateCustomer", "Customer", new { id = c.CustomerID }, Context.Request.Scheme)', 'Update')" class="btn btn-success text-white"><i class="fas fa-random"></i>Update</a></td>
+    @*<td>@Html.ActionLink("Delete", "DeleteCustomer", new { id = c.CustomerID })</td>*@
+    <td><a onclick="showInPopup('@Url.Action("DeleteCustomer", "Customer", new { id = c.CustomerID }, Context.Request.Scheme)', 'Delete')" class="btn btn-success text-white"><i class="fas fa-random"></i>Delete</a></td>
+</tr>
+
+    }
+</table>
+@*<p>@Html.ActionLink("Back", "GetCustomer")</p>*@
+
+@if (ViewBag.Page > 0)
+{
+    <a href="@Url.Action("ViewAllCustomers", new {page = ViewBag.Page - 1 })" class="btn btn-default">&laquo; Prev</a>
+}
+
+@if (ViewBag.Page < ViewBag.MaxPage)
+{
+    <a href="@Url.Action("ViewAllCustomers", new {page = ViewBag.Page  + 1 })" class="btn btn-default">Next &raquo;</a>
+}
+

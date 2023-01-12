@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+</style>
+
+@if (TempData["UserMessage"] != null)
+{
+    @if (TempData["UserMessage"].ToString() == "Account creation initiated successfully.")
+    {
+        <p style="text-align:center;border:3px solid green;">@TempData["UserMessage"].ToString()</p>
+    }
+    @if (TempData["UserMessage"].ToString() != "Account creation initiated successfully.")
+    {
+        <p style="text-align:center;border:3px solid red;">@TempData["UserMessage"].ToString()</p>
+    }
+}
+
+<p style="text-align:center">@Html.ActionLink("Back", "Add")</p>

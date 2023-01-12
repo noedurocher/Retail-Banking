@@ -1,0 +1,81 @@
+﻿@using CaseStudy.ViewModel
+@model DepositViewModel
+@{
+    ViewData["Title"] = "Depoist";
+    Layout = null;
+}
+
+<h1 style="text-align:center">Deposit</h1>
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<form asp-action="Deposit">
+    <input type="text" value="Amount deposited successfully" asp-for="@Model.Account.Status" hidden />
+    <table>
+        <tr>
+            <td>
+                <label asp-for="Account.CustomerID"></label>
+            </td>
+            <td>
+                <input type="text" value=@Model.Account.CustomerID asp-for="@Model.Account.CustomerID" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Account.AccountID"></label>
+            </td>
+            <td>
+                <input type="text" value=@Model.Account.AccountID asp-for="@Model.Account.AccountID" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Account.AccountType"></label>
+            </td>
+            <td>
+                <input type="text" value=@Model.Account.AccountType asp-for="@Model.Account.AccountType" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Account.AccountBalance"></label>
+            </td>
+            <td>
+                <input type="text" value=@Model.Account.AccountBalance asp-for="@Model.Account.AccountBalance" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Deposit Amount</label>
+            </td>
+            <td>
+                <input type="number" asp-for="@Model.amount" required min="1" />
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:center">
+        <button type="submit">DEPOSIT</button>
+    </div>
+    <br />
+    <div style="text-align:center">
+        @Html.ActionLink("CANCEL", "ViewAccountBySSNID")
+    </div>
+
+</form>

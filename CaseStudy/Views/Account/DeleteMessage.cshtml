@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "DeleteMessage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+</style>
+@if (TempData["UserMessage"] != null)
+{
+    @if (TempData["UserMessage"].ToString() == "Account deletion inititated successfully.")
+    {
+        <p style="text-align:center;border:3px solid green;">@TempData["UserMessage"].ToString()</p>
+    }
+    @if (TempData["UserMessage"].ToString() == "Account deletion inititated successfully with balance.")
+    {
+        <p style="text-align:center;border:3px solid green;">@TempData["UserMessage"].ToString()</p>
+    }
+}
+<br />
+<p style="text-align:center">@Html.ActionLink("Back", "Delete")</p>

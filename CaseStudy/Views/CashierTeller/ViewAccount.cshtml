@@ -1,0 +1,45 @@
+﻿@model Account
+@{
+    ViewData["Title"] = "ViewAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Account Details</h1>
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td, th {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+
+    }
+</style>
+
+<table class="table table-active table-striped">
+    <tr>
+        <th>Customer ID</th>
+        <th>Account ID</th>
+        <th>Account Type</th>
+        <th>Account Balance</th>
+        <th>Deposit</th>
+        <th>Withdraw</th>
+        <th>Transfer</th>
+    </tr>
+    <tr>
+        <td>@Model.CustomerID</td>
+        <td>@Model.AccountID</td>
+        <td>@Model.AccountType</td>
+        <td>$@Model.AccountBalance</td>
+        <td>@Html.ActionLink("Deposit", "Deposit", new { AccountID = Model.AccountID })</td>
+        <td>@Html.ActionLink("Withdraw", "Withdraw", new { AccountID = Model.AccountID })</td>
+        <td>@Html.ActionLink("Transfer","TransferAccount","Transaction", new { SourceAccountID = Model.AccountID })</td>
+    </tr>
+</table>
+<div style="text-align:center">
+    @Html.ActionLink("Back", "ViewAccountBySSNID")
+</div>

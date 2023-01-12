@@ -1,0 +1,67 @@
+﻿@using CaseStudy.ViewModel
+@model CustomerAccountViewModel
+@{
+    ViewData["Title"] = "ViewAccountsUsingID";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<h1 style="text-align:center">View Accounts Using Customer ID</h1>
+
+@if (TempData["UserMessage"] != null)
+{
+    @if (TempData["UserMessage"].ToString() == "No accounts found.")
+    {
+        <p style="text-align:center;border:3px solid red;">@TempData["UserMessage"].ToString()</p>
+    }
+}
+
+<form asp-action="ViewAccounts">
+    <input type="number" asp-for="Customer.SSNID" hidden value=0 formnovalidate="formnovalidate" />
+    <table>
+        <tr>
+            <td>
+                <label asp-for="Account.CustomerID"></label>
+            </td>
+            <td>
+                <input style="width:88%" type="number" asp-for="Account.CustomerID" required value=0 formnovalidate="formnovalidate" min="0" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div style="text-align:center">
+        <button type="submit">VIEW</button>
+    </div>
+    <br />
+    <div style="text-align: center ">
+        @Html.ActionLink("View Accounts using SSNID", "ViewAccountBySSNID")
+    </div>
+    <br />
+    <div style="text-align:center">
+        @Html.ActionLink("View Accounts Using Account ID", "ViewAccountUsingAccountID")
+    </div>
+    <br />
+    <div style="text-align: center ">
+        @Html.ActionLink("CANCEL", "ViewAccountBySSNID")
+    </div>
+
+</form>

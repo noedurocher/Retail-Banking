@@ -1,0 +1,97 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "ConfirmDelete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Confirm Delete</h1>
+<style>
+    div{
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<table>
+    <tr>
+        <td>
+            Customer ID
+        </td>
+        <td>
+            <input style="width:100%" type="text" value=@Model.CustomerID asp-for="@Model.CustomerID" readonly />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            SSNID
+        </td>
+        <td>
+            <input style="width:100%" type="text" value=@Model.SSNID asp-for="@Model.SSNID" readonly />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            <input style="width:100%" type="text" value=@Model.Name asp-for="@Model.Name" readonly />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Age
+        </td>
+        <td>
+            <input style="width:100%" type="text" value=@Model.Age asp-for="@Model.Age" readonly />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            AddressLine1
+        </td>
+        <td>
+            <input style="width:100%" type="text" value=@Model.AddressLine1 asp-for="@Model.AddressLine1" readonly />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            AddressLine2
+        </td>
+        <td>
+            <input style="width:100%" type="text" value=@Model.AddressLine2 asp-for="@Model.AddressLine2" readonly />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            City
+        </td>
+        <td>
+            <input style="width:100%" type="text" value=@Model.City asp-for="@Model.City" readonly />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            State
+        </td>
+        <td>
+            <input style="width:100%" type="text" value=@Model.State asp-for="@Model.State" readonly />
+        </td>
+    </tr>
+</table>
+<div style="text-align:center">
+    @Html.ActionLink("Back to View Customers", "ViewAllCustomers")
+</div>
+<div style="color:green">
+    <p style="text-align:center"> @TempData["Message"]</p>
+</div>

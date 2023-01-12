@@ -1,0 +1,95 @@
+﻿@using CaseStudy.ViewModel;
+@model TransferViewModel
+@{
+    ViewData["Title"] = "TransferScreen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Transfer Screen</h1>
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+    <table>
+        <tr>
+            <td>
+                Source account ID
+            </td>
+            <td>
+                @Html.DisplayTextFor(a=>a.SourceAccountID)
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Target account ID
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.TargetAccountID)
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Source account initial balance
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.SourceCurrentBalance)
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Target account initial balance
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.TargetCurrentBalance)
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Source account updated balance
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.SourceUpdatedBalance)
+               
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Target account updated balance
+            </td>
+            <td>
+                @Html.DisplayTextFor(a => a.TargetUpdatedBalance)
+               
+            </td>
+        </tr>
+    </table>
+    <div style="color:green">
+        <p style="text-align:center">@ViewBag.Message</p>
+    </div>
+    <div style="color:red">
+       <p style="text-align:center">@ViewBag.ErrorMessage</p>
+    </div>
+    <div style="text-align:center">
+        @Html.ActionLink("Return to Transfer", "TransferAccount", new { SourceAccountID = Model.SourceAccountID })
+    </div>
+<div style="text-align:center">
+@Html.ActionLink("CANCEL","ViewAccountBySSNID","CashierTeller")
+    </div>
+

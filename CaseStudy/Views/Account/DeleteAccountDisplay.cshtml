@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "DeleteAccountDisplay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+</style>
+@if (TempData["UserMessage"] != null)
+{
+    <p style="text-align:center;border:3px solid red;">@TempData["UserMessage"].ToString()</p>
+}
+<br />
+<p style="text-align:center">@Html.ActionLink("Back", "Delete")</p>
+

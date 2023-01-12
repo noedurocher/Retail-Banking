@@ -1,0 +1,103 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "UpdateCustomer";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+}
+
+<h1 style="text-align:center">Update Customer</h1>
+<form asp-action="UpdateCustomer">
+    @*@Html.HiddenFor(a => a.CustomerID)*@
+    @Html.HiddenFor(a => a.Status)
+    @*@Html.HiddenFor(a => a.SSNID)*@
+    <style>
+        div {
+            background: white;
+            background: linear-gradient(to right,#f6ebe6,#aee1f9);
+        }
+        table, tr, td {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <table>
+        <tr>
+            <td>
+                Customer ID
+            </td>
+            <td>
+                <input type="text" value=@Model.CustomerID asp-for="CustomerID" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                SSN ID
+            </td>
+            <td>
+                <input type="text" value=@Model.SSNID asp-for="SSNID" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td> @Html.LabelFor(a => a.Name)</td>
+            <td>
+                <input type="text" asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+            </td>
+        </tr>
+        <tr>
+            <td> @Html.LabelFor(a => a.Age)</td>
+            <td>
+                <input type="number" asp-for="Age" required min="1" />
+                <span asp-validation-for="Age"></span>
+            </td>
+        </tr>
+        <tr>
+            <td> Address Line 1</td>
+            <td>
+                <input type="text" asp-for="AddressLine1" />
+                <span asp-validation-for="AddressLine1"></span>
+            </td>
+        </tr>
+        <tr>
+            <td> Address Line 2</td>
+            <td>
+                <input type="text" asp-for="AddressLine2" />
+                <span asp-validation-for="AddressLine2"></span>
+            </td>
+        </tr>
+        <tr>
+            <td> @Html.LabelFor(a => a.City)</td>
+            <td>
+                <input type="text" asp-for="City" />
+                <span asp-validation-for="City"></span>
+            </td>
+        </tr>
+        <tr>
+            <td> @Html.LabelFor(a => a.State)</td>
+            <td>
+                <input type="text" asp-for="State" />
+                <span asp-validation-for="State"></span>
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:center">
+        <input type="submit" value="Update Customer" />
+    </div>
+    <div style="text-align:center">
+        @Html.ActionLink("Back to View Customers", "ViewAllCustomers")
+    </div>
+    <div style="color:green">
+       <p style="text-align:center"> @ViewBag.Message</p>
+    </div>
+    <div style="color:red">
+        <p style="text-align:center"> @ViewBag.ErrorMessage</p>
+</div>
+</form>

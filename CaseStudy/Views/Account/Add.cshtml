@@ -1,0 +1,67 @@
+﻿@using CaseStudy.ViewModel;
+@model CustomerAccountViewModel
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Add Account</h1>
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    table, tr, td {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+@if (TempData["UserMessage"] != null)
+{
+    <p style="text-align:center;border:3px solid red;">@TempData["UserMessage"].ToString()</p>
+}
+
+<form asp-action="Create">
+    <input type="hidden" asp-for="Account.Status" value="Add Account" />
+    <table>
+        <tr>
+            <td>
+                <label asp-for="Account.CustomerID"></label>
+            </td>
+            <td>
+                <select style="width:88%" asp-for="Account.CustomerID" asp-items="@(new SelectList(Model.ViewID,"CustomerID","CustomerID"))" required></select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Account.AccountType"></label>
+            </td>
+            <td>
+                @Html.DropDownListFor(m => m.Account.AccountType, new SelectList(Enum.GetValues(typeof(AccountType))), "Select Account Type", new { required = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Account.AccountBalance"></label>
+            </td>
+            <td>
+                <input style="width:88%" type="number" asp-for="Account.AccountBalance" required min="0" />
+                <span asp-validation-for="Account.AccountBalance"></span>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div style="text-align:center">
+        <button type="submit">ADD</button>
+    </div>
+</form>

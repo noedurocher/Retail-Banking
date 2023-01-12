@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Account>
+@{
+    ViewData["Title"] = "ViewAllAccounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    h1, p {
+        
+        text-align: center;
+    }
+    table, th, td, tr {
+        border: 1px solid black;
+    }
+</style>
+
+
+
+<h1>All Accounts</h1>
+
+<table class="table table-active table-striped">
+    <tr>
+        <th>Account ID</th>
+        <th>Customer ID</th>
+        <th>Type</th>
+        <th>Balance</th>
+        <th>Status</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (Account a in Model)
+    {
+        <tr>
+            <td>@a.AccountID</td>
+            <td>@a.CustomerID</td>
+            <td>@a.AccountType</td>
+            <td>$@a.AccountBalance</td>
+            <td>@a.Status</td>
+            <td>@Html.ActionLink("Delete", "DeleteFrom", new { AccountID = a.AccountID })</td>
+        </tr>
+    }
+</table>
+
+<p>@Html.ActionLink("Search Account By Number", "ViewAccountAndCustomer")</p>
+<br />
+
+@if (ViewBag.Page > 0)
+{
+    <p><a href="@Url.Action("ViewAllAccounts", new {page = ViewBag.Page - 1 })" class="btn btn-default">&laquo; Prev</a></p>
+}
+
+@if (ViewBag.Page < ViewBag.MaxPage)
+{
+    <p><a href="@Url.Action("ViewAllAccounts", new {page = ViewBag.Page  + 1 })" class="btn btn-default">Next &raquo;</a></p>
+}
+

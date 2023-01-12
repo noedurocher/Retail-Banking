@@ -1,0 +1,59 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "GetCustomerBySSN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <style>
+        div {
+            background: white;
+            background: linear-gradient(to right,#f6ebe6,#aee1f9);
+        }
+        form {
+            width: 65%;
+            margin: 0 17.5%;
+        }
+
+        h1, p, div {
+            text-align: center;
+        }
+        table, tr, td {
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+        }
+    </style>
+<h1>Customer Details By SSN</h1>
+
+<form asp-action="DisplayCustomer">
+    <table @*class="table table-bordered"*@>
+        <tr>
+            <td>
+                SSNID
+            </td>
+            <td>
+                <input type="number" asp-for="SSNID" required />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div style="text-align:center">
+        <button type="submit">View Customer</button>
+    </div>
+    <br />
+
+</form>
+
+@if (ViewData["result"] != null)
+{
+    if (ViewData["result"].ToString() != "Valid")
+    {
+        <p style="color:red; margin-left: 0">Could not find customer</p>
+    }
+
+}
+
+<p>@Html.ActionLink("View By Customer ID", "GetCustomer")</p>
+<p>@Html.ActionLink("View All Customers", "ViewAllCustomers")</p>
+
+

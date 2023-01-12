@@ -1,0 +1,131 @@
+﻿@*@using CaseStudy.ViewModel
+    @model TransactionViewModel
+    @{
+        ViewData["Title"] = "GetStatementsByDate";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h1 style="text-align:center">Statements</h1>
+
+    <style>
+        table, tr, td, th {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+
+    <table>
+        <tr>
+            <th>Transaction Date</th>
+            <th>Transaction Type</th>
+            <th>Transaction Amount</th>
+        </tr>
+        @foreach (Transaction transaction in Model.ViewTransaction)
+        {
+            <tr>
+                <td>@transaction.TransactionDate</td>
+                <td>@transaction.TransactionType</td>
+                <td>@transaction.TransactionAmount</td>
+            </tr>
+        }
+    </table>
+    <div style="text-align:center">
+        @Html.ActionLink("CANCEL", "GetStatement")
+    </div>*@
+
+@*@using CaseStudy.ViewModel
+    @model TransactionViewModel*@
+@model IPagedList<CaseStudy.Models.Transaction>
+
+
+@{
+    ViewData["Title"] = "GetStatements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Statements</h1>
+
+<style>
+    div {
+        background: white;
+        background: linear-gradient(to right,#f6ebe6,#aee1f9);
+    }
+    .Pagelist {
+        text-align: center;
+    }
+
+    table, tr, td, th {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: 1px solid black;
+    }
+</style>
+
+<div style="text-align:center">
+    <label for="searchrec">Search: </label>
+    <input type="search" id="searchrec" class="search" palceholder="Search" />
+</div>
+
+<table class="table table-active table-striped" id="table1">
+    <tr id="show">
+        <th>Transaction Date</th>
+        <th>Transaction Type</th>
+        <th>Transaction Amount</th>
+    </tr>
+    @*@foreach (Transaction transaction in Model.ViewTransaction)*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>@transaction.TransactionDate</td>
+                <td>@transaction.TransactionType</td>
+                <td>@transaction.TransactionAmount</td>*@
+            <td>@Html.DisplayFor(modelItem => item.TransactionDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.TransactionType)</td>
+            <td>$@Html.DisplayFor(modelItem => item.TransactionAmount)</td>
+        </tr>
+    }
+</table>
+<br />
+<div style="text-align:center">
+    Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
+</div>
+<br />
+<div>
+    <table>
+        <tr>
+            <td>@Html.PagedListPager(Model, page => Url.Action("GetStatementsByDate", new { page }))</td>
+        </tr>
+    </table>
+</div>
+<br />
+<div style="text-align:center">
+    @Html.ActionLink("CANCEL", "GetStatement")
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function()
+    {
+        $('.search').on('keyup', function ()
+        {
+            var datasearch = $(this).val().toLowerCase();
+            $('#table1 tr').each(function ()
+            {
+                var stringdata = $(this).text().toLowerCase();
+                if (stringdata.indexOf(datasearch) === -1)
+                {
+                    $(this).hide();
+                }
+                else
+                {
+                    $('#show').show();
+                    $(this).show();
+                }
+            });
+        });
+    });
+</script>

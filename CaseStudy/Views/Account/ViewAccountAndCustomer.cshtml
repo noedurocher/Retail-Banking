@@ -1,0 +1,49 @@
+﻿@model Account
+@{
+    ViewData["Title"] = "ViewAccountAndCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <style>
+        div {
+            background: white;
+            background: linear-gradient(to right,#f6ebe6,#aee1f9);
+        }
+        form {
+            width: 65%;
+            margin: 0 17.5%;
+        }
+
+        h1, p, div {
+            text-align: center;
+        }
+        table, tr, td {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+
+<h1>Search By Account Number</h1>
+<br />
+<form asp-action="DisplayAccountAndCustomerDetails">
+    <table>
+        <tr>
+            <td>Account ID</td>
+            <td><input type="number" asp-for="AccountID" required /></td>
+
+        </tr>
+    </table>
+    <input style="text-align:center" type="submit" value="View" />
+</form>
+@Html.ActionLink("View All Accounts", "ViewAllAccounts")
+
+@if (ViewData["result"] != null)
+{
+    if(ViewData["result"].ToString() != "Valid")
+    {
+        <p style="color:red">Could not find account</p>
+    }
+   
+}
+

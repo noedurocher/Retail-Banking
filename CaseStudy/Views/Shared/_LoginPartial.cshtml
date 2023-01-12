@@ -1,0 +1,81 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="Identity" asp-page="/Account/Register">Add User</a>
+            </li>
+        }
+        @*<li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Add User</a>
+            </li>*@
+        @if (User.IsInRole("AccountExecutive"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Account" asp-action="Add">Add Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Account" asp-action="Delete">Delete Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Account" asp-action="ViewAllAccounts">View Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Account" asp-action="ViewAccountAndCustomer">Search by Account Number</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Account" asp-action="AccountInfo">View Accounts using Datatables</a>
+            </li>
+        }
+        @if (User.IsInRole("CustomerExecutive"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Customer" asp-action="ViewAllCustomers">View Customers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Customer" asp-action="CreateCustomer">Add Customer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="Customer" asp-action="GetCustomer">Search Customer by ID</a>
+            </li>
+
+        }
+        @if (User.IsInRole("Cashier"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="CashierTeller" asp-action="ViewAccountBySSNID">View Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="CashierTeller" asp-action="GetStatement">View Statements</a>
+            </li>
+        }
+        @if (User.IsInRole("Teller"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="CashierTeller" asp-action="ViewAccountBySSNID">View Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" asp-area="" asp-controller="CashierTeller" asp-action="GetStatement">View Statements</a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link text-black" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">User ID: @User.Identity.Name</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-black">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-black" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>
